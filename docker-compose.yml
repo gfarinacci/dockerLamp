@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+      - '80:80'
+
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.apache
+    volumes:
+      - ./src:/var/www/html/
+
+  database:
+    image: mariadb:10
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Strong!Passw0rd
+    volumes:
+      - database:/var/lib/mysql
+
+volumes:
+  database:
