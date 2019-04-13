@@ -1,7 +1,8 @@
 FROM php:7-apache
 
 RUN apt-get update \
-    && apt-get install -y git
+    && apt-get install -y git \
+    && apt-get install zip unzip sudo
 
 RUN docker-php-ext-install pdo pdo_mysql mysqli
 
